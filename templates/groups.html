@@ -1,1 +1,17 @@
+{#
+<pre>
 context: {{ context }}
+</pre>
+#}
+
+<div class="flex-wrap d-flex justify-content-center">
+{% for group in context.groups.named_groups %}
+    <div class="alert alert-success text-start m-4">
+        <ol>
+        {% for student in group %}
+            <li>{{ student}}</li>
+        {% endfor %}
+        </ol>
+    </div>
+{% endfor %}
+</div>

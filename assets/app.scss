@@ -1,0 +1,28 @@
+$bootstrap-icons-font-dir: "npm:bootstrap-icons/font/fonts/";
+
+@import "npm:bootstrap/scss/bootstrap";
+@import "npm:bootstrap-icons/font/bootstrap-icons.css";
+
+
+
+#calculator-wrapper {
+    display: none;
+}
+.prefs-list {
+padding-bottom: 4rem;
+position: relative;
+
+}
+.prefs-list::after{
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+text-align: center; 
+font-size: 2rem;
+content: "+";
+}
+.active {
+pointer-events: none;
+}
+

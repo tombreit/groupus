@@ -1,0 +1,22 @@
+{
+  "name": "groupus",
+  "author": "Thomas Breitner",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "bootstrap": "^5.3.0",
+    "bootstrap-icons": "^1.10.5",
+    "htmx.org": "^1.9.2",
+    "parcel": "^2.9.3",
+    "sass": "^1.63.6",
+    "sortablejs": "^1.15.0"
+  },
+  "config": {
+    "assets_src": "./assets",
+    "assets_dist": "./static"
+  },
+  "scripts": {
+    "build:sass": "parcel build $npm_package_config_assets_src/app.scss --dist-dir $npm_package_config_assets_dist",
+    "build:js": "parcel build $npm_package_config_assets_src/app.js --dist-dir $npm_package_config_assets_dist",
+    "build": "npm run build:sass & npm run build:js"
+  }
+}

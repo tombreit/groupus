@@ -29,10 +29,7 @@ def calculate():
     return render_template('groups.html', context=context)
 
 
-def create_prefs_matrix(prefs):
-    students = [pref[0] for pref in prefs]
-    print(f"{students=}")
-
+def create_prefs_matrix(students, prefs):
     # students_len = len(students)
     # array = np.zeros((students_len, students_len), dtype=np.int16)          
     df_with_headers = pd.DataFrame(0, index=students, columns=students)
@@ -59,8 +56,9 @@ def get_groups(prefs, group_size):
     prefs = json.loads(prefs)
     print(f"{prefs=}")
     print(f"{group_size=}")
-    
-    prefs_matrix = create_prefs_matrix(prefs)
+
+    students = [pref[0] for pref in prefs]
+    prefs_matrix = create_prefs_matrix(students, prefs)
 
     matching = Matching(
         prefs_matrix,
@@ -71,8 +69,15 @@ def get_groups(prefs, group_size):
     score, groups = matching.solve()
 
     print(f"{groups=}")
+    print(f"{prefs=}")
+    named_groups = []
+
+    for group in groups:
+        named_group = [students[student_index] for student_index in group]
+        print(f"{named_group=}")
+        named_groups.append(named_group)
 
     return {
-        "groups": groups,
+        "named_groups": named_groups,
         "score": score,
     }
