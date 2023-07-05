@@ -9,20 +9,35 @@ $bootstrap-icons-font-dir: "npm:bootstrap-icons/font/fonts/";
     display: none;
 }
 .prefs-list {
-padding-bottom: 4rem;
-position: relative;
-
+    padding-bottom: 4rem;
+    position: relative;
 }
 .prefs-list::after{
-position: absolute;
-bottom: 0;
-left: 0;
-right: 0;
-text-align: center; 
-font-size: 2rem;
-content: "+";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center; 
+    font-size: 2rem;
+    content: "+";
+}
+.pref-dismiss {
+    color: gray;
+    cursor: pointer;
 }
 .active {
-pointer-events: none;
+    pointer-events: none;
 }
 
+.draggable {
+    cursor: grab;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+
+#personsContainer .pref-dismiss,
+#prefsContainer .active .pref-dismiss {
+    display: none; 
+}

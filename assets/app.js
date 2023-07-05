@@ -1,4 +1,4 @@
-import * as bootstrap from 'bootstrap';
+// import * as bootstrap from 'bootstrap';
 import Sortable from 'sortablejs';
 import htmx from 'htmx.org';
 
@@ -10,9 +10,14 @@ const personsPrefsFormElement = document.getElementById('btn-generate-groups');
 const personsPrefsInputElement = document.getElementById('personsPrefs');
 const personsNamesInputField = document.getElementById("personsNamesInputField");
 
-
 personsPrefsFormElement.addEventListener('click', getPersonPrefs);
 personsNamesInputField.addEventListener('keyup', convertToElements);
+
+prefsParentElement.addEventListener('click', function(e){
+    if (e.target.classList.contains("pref-dismiss")) {
+        e.target.parentElement.remove();
+    }
+})
 
 
 const personsObj = new Set();
@@ -26,6 +31,20 @@ new Sortable(personsContainer, {
     sort: false,
     animation: 150
 });
+
+
+function createPersonElemMarkup(person, isActive) {
+    const active = isActive ? "active" : "";
+    return `
+        <div 
+            class="pref-item draggable text-nowrap list-group-item ${active}" 
+            data-id="${person}"
+        >
+            ${person} 
+            <span class="pref-dismiss">✖</span>
+        </div>
+    `
+}
 
 
 function getPersonPrefs(){
@@ -75,18 +94,18 @@ function buildPrefsTable(personsObj) {
   prefsParentElement.replaceChildren();
 
   for (person of personsObj) {
-    const personElement = `<div class="text-nowrap list-group-item" data-id="${person}">${person}</div>`;
+    let active = "noactive";
+    let personElement = createPersonElemMarkup(person, false);
     personsParentElement.insertAdjacentHTML("beforeend", personElement);
 
-  const prefsContainer = `<div class="card m-4">
-   <div id="prefs-${person}" class="prefs-list list-group list-group-flush">
-    <div 
-      class="list-group-item text-nowrap active" 
-      data-id="${person}"
-    >${person}</div>
-  </div>
-  </div>`;
-
+    active = "asdfadsactive";
+    const prefsContainer = `
+        <div class="card m-4">
+            <div id="prefs-${person}" class="prefs-list list-group list-group-flush">
+                ${createPersonElemMarkup(person, true)}
+            </div>
+        </div>
+    `;
 
   prefsParentElement.insertAdjacentHTML("beforeend", prefsContainer);
 

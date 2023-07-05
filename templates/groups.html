@@ -7,7 +7,7 @@ context: {{ context }}
 <div class="flex-wrap d-flex justify-content-center">
 {% for group in context.groups.named_groups %}
     <div class="alert alert-success text-start m-4">
-        <ol>
+        <ol class="pe-3 fw-bold">
         {% for student in group %}
             <li>{{ student}}</li>
         {% endfor %}
@@ -15,3 +15,6 @@ context: {{ context }}
     </div>
 {% endfor %}
 </div>
+<p class="text-muted text-center">
+    Score: {{ context.groups.score }}
+</p>
