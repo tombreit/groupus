@@ -21,13 +21,46 @@ $bootstrap-icons-font-dir: "npm:bootstrap-icons/font/fonts/";
     font-size: 2rem;
     content: "+";
 }
-.pref-dismiss {
-    color: gray;
-    cursor: pointer;
+
+.pref-item {
+    @extend .badge, .text-primary-emphasis, .bg-primary-subtle, .border, .border-primary-subtle, .rounded-pill;
+    // @extend .d-flex, .align-items-center;
+    @extend .p-1, .pe-2, .my-1;
+
+    font-size: 1rem;
+
+    #prefsContainer & {
+        display: block;
+    }
+
+    &.active {
+        @extend .text-bg-primary;
+        pointer-events: none;
+
+        // TODO: Do this programmatically via JS
+        // Ensure there is no top margin to prevent dropping items
+        // before this .active item.
+        margin: 0 !important;
+    }
+
+    .person-avatar {
+        font-size: 1.5rem;
+    }
+
+    .pref-dismiss {
+        cursor: pointer;
+    }    
 }
-.active {
-    pointer-events: none;
+
+#prefsContainer .pref-item {
 }
+
+#personsContainer .pref-dismiss,
+#prefsContainer .active .pref-dismiss {
+    display: none; 
+}
+
+
 
 .draggable {
     cursor: grab;
@@ -35,9 +68,4 @@ $bootstrap-icons-font-dir: "npm:bootstrap-icons/font/fonts/";
 
 .draggable:active {
     cursor: grabbing;
-}
-
-#personsContainer .pref-dismiss,
-#prefsContainer .active .pref-dismiss {
-    display: none; 
 }
