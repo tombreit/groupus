@@ -2,3 +2,4 @@ node_modules/
 .venv/
 .parcel-cache/
 .tmp/
+/static/
