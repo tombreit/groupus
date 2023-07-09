@@ -1,3 +1,5 @@
+import argparse
+import csv
 import json
 import numpy as np
 import pandas as pd
@@ -30,6 +32,9 @@ def calculate():
 
 
 def create_prefs_matrix(students, prefs):
+    # print("prefs:")
+    # print(prefs)
+
     # students_len = len(students)
     # array = np.zeros((students_len, students_len), dtype=np.int16)          
     df_with_headers = pd.DataFrame(0, index=students, columns=students)
@@ -37,28 +42,47 @@ def create_prefs_matrix(students, prefs):
     for pref in prefs:
         for_student = pref.pop(0)
         weights = list(reversed(range(11)))
-        print(f"Setting preferences for {for_student=}")
+        # print(f"Setting preferences for {for_student=}")
         for student in pref:
-            print(f"{student=}")
+            # print(f"{student=}")
             df_with_headers.at[for_student, student] = weights.pop(0)
 
-    print("df_with_headers:")
-    print(df_with_headers)
+    # print("df_with_headers:")
+    # print(df_with_headers)
+    # print(type(df_with_headers))
 
     np_prefs_array = df_with_headers.to_records(index=False)
-    print("np_prefs_array:")
-    print(np_prefs_array)
+    # print("np_prefs_array:")
+    # print(np_prefs_array)
 
     return np_prefs_array
 
 
+def get_groups_from_csv(csvfile, group_size):
+    prefs = []
+    with open(csvfile, encoding="utf-8") as csvfile_obj:
+        csv_reader = csv.reader(csvfile_obj)
+        for row in csv_reader:
+            prefs.append(row)
+
+    prefs_as_str = str(prefs)
+    prefs_replaced = prefs_as_str.replace(" ", "")
+    prefs_replaced = prefs_as_str.replace("\'", "\"")
+    
+    return get_groups(prefs_replaced, group_size)
+
+
 def get_groups(prefs, group_size):
-    prefs = json.loads(prefs)
     print(f"{prefs=}")
-    print(f"{group_size=}")
+    print(f"{type(prefs)=}")
+
+    prefs = json.loads(prefs)
+    # print(f"{group_size=}")
 
     students = [pref[0] for pref in prefs]
     prefs_matrix = create_prefs_matrix(students, prefs)
+    # print("prefs_matrix: ")
+    # print(prefs_matrix)
 
     matching = Matching(
         prefs_matrix,
@@ -68,8 +92,8 @@ def get_groups(prefs, group_size):
     )
     score, groups = matching.solve()
 
-    print(f"{groups=}")
-    print(f"{prefs=}")
+    # print(f"{groups=}")
+    # print(f"{prefs=}")
     named_groups = []
 
     for group in groups:
@@ -81,3 +105,11 @@ def get_groups(prefs, group_size):
         "named_groups": named_groups,
         "score": score,
     }
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Partition in balanced groups while preserving preferences among each other',)
+    parser.add_argument('csvfile')
+    parser.add_argument('group_size', type=int)
+    args = parser.parse_args()
+    get_groups_from_csv(args.csvfile, args.group_size)
