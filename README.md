@@ -16,7 +16,9 @@ The maximum score for friendship preferences is 10.0.
 
 Groups can be regenerated, often resulting in different compositions and different scores.
 
-## Setup
+Hosted on/by [fly.io](https://fly.io/)
+
+## 🦘 Setup
 
 ```bash
 (venv) pip install -r requirements.txt
