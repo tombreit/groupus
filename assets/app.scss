@@ -52,15 +52,10 @@ $bootstrap-icons-font-dir: "npm:bootstrap-icons/font/fonts/";
     }    
 }
 
-#prefsContainer .pref-item {
-}
-
 #personsContainer .pref-dismiss,
 #prefsContainer .active .pref-dismiss {
     display: none; 
 }
-
-
 
 .draggable {
     cursor: grab;
