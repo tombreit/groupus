@@ -2,13 +2,13 @@
   "name": "groupus",
   "author": "Thomas Breitner",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.9.3",
+    "@parcel/transformer-sass": "^2.11.0",
     "bootstrap": "^5.3.0",
-    "bootstrap-icons": "^1.10.5",
-    "htmx.org": "^1.9.2",
-    "parcel": "^2.9.3",
-    "sass": "^1.63.6",
-    "sortablejs": "^1.15.0"
+    "bootstrap-icons": "^1.11.3",
+    "htmx.org": "^1.9.10",
+    "parcel": "^2.11.0",
+    "sass": "^1.70.0",
+    "sortablejs": "^1.15.2"
   },
   "config": {
     "assets_src": "./assets",
