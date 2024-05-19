@@ -2,12 +2,12 @@
   "name": "groupus",
   "author": "Thomas Breitner",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.11.0",
-    "bootstrap": "^5.3.0",
+    "@parcel/transformer-sass": "^2.12.0",
+    "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
-    "htmx.org": "^1.9.10",
-    "parcel": "^2.11.0",
-    "sass": "^1.70.0",
+    "htmx.org": "^1.9.12",
+    "parcel": "^2.12.0",
+    "sass": "^1.77.2",
     "sortablejs": "^1.15.2"
   },
   "config": {
