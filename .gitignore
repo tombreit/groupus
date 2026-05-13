@@ -2,4 +2,5 @@ node_modules/
 .venv/
 .parcel-cache/
 .tmp/
+__pycache__/
 # /static/
